@@ -1,5 +1,10 @@
 # Synthcore
 
+[![version](https://img.shields.io/github/v/tag/Abick91/synthcore?label=version&sort=semver)](https://github.com/Abick91/synthcore/tags)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![node](https://img.shields.io/badge/node-%E2%89%A522-brightgreen)](package.json)
+[![deps](https://img.shields.io/badge/runtime%20deps-0-success)](package.json)
+
 **Inductive program synthesis with library learning, for JS/TS. No LLM, no GPU.**
 
 Give it input→output examples and `synthcore` returns a **verified function** (or `{ok:false}`). It never
@@ -41,6 +46,22 @@ arrays and JSON. It is not general-purpose code generation.
 
 For the right column, the path is to **seed a primitive** (`extraPrims`, e.g. proposed by an LLM) or raise the
 search budget — it's not a wall, it's a frontier that moves.
+
+## Use cases
+
+Synthcore shines wherever you have **examples** of a small, repeatable transform and need it **guaranteed correct,
+cheap and offline** — not a plausible guess you still have to test:
+
+- **Data cleaning / ETL at scale.** Normalize a messy column (`"$1,234.50"` → `1234.5`) once, then run it over
+  millions of rows at **zero per-call cost**, offline (no data leaves your machine). [Transpile to Python](#multi-language-output-transpile-to-python) for your pipeline.
+- **Kill the regex you were about to google.** Extract a field *by example* instead of *by pattern*
+  (`"ERR-404: not found"` → `"404"`). You describe the *what*, not the *how*.
+- **Schema mapping / API glue.** Turn "their payload → your payload" examples into a verified extractor; commit it,
+  run it in CI, no external API in the loop.
+- **Recover an exact formula from data.** Verified symbolic regression (`½mv²`, `pH`) for unit conversions, pricing
+  rules and discrete laws — exact, not approximated.
+- **A verified tool for your agents.** Via [MCP](#use-it-from-an-agent-mcp), an LLM can call Synthcore for a
+  guaranteed transform instead of hallucinating one.
 
 ## How it works
 
@@ -138,6 +159,19 @@ it for free. Full copy-paste example: [`examples/hybrid-llm-seeding.ts`](example
 
 **Advanced surface** (composition, independent verification): `solveBySynthesis`, `learnAbstractions`, `grade`
 (verifier), `buildOps`, `configureSearch`, and the types `Tool` / `Recipe` / `Op` / `Abstraction`.
+
+## Use it from an agent (MCP)
+
+[`synthcore-mcp`](mcp/) is a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes
+`synthesize` as a tool, so agents (Claude Desktop, Cursor, …) can get a **deterministic, verified, $0** data
+transform instead of hallucinating one. The LLM reasons; Synthcore guarantees.
+
+```bash
+cd mcp && npm install && npm start   # stdio server with a single `synthesize` tool
+```
+
+Then point your client at it and call `synthesize` with your examples (supports the opt-in `bundle`s and
+`language: "python"`). Full wiring for Claude Desktop / Cursor in [`mcp/README.md`](mcp/README.md).
 
 ## Limitations (read them — honest selling avoids the hype that burns)
 
