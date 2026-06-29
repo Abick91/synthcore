@@ -1,0 +1,13 @@
+// Config de BUILD para publicar en npm: emite JS + tipos (.d.ts) a `dist/`. Solo la librería — excluye demo, bench,
+// tests y examples (no son parte del paquete). El typecheck de desarrollo usa tsconfig.json (que sí los incluye).
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/demo.ts", "src/bench.ts"]
+}

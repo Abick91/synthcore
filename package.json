@@ -1,0 +1,35 @@
+{
+  "name": "synthcore",
+  "version": "1.0.0",
+  "description": "Síntesis inductiva de programas con aprendizaje de librería para JS/TS — sin LLM, sin GPU. Da ejemplos I/O, devuelve una función verificada.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "demo": "tsx src/demo.ts",
+    "bench": "tsx src/bench.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test \"src/**/*.test.ts\"",
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "keywords": ["program-synthesis", "inductive", "programming-by-example", "dreamcoder", "library-learning", "no-llm", "deterministic"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Abick91/synthcore.git" },
+  "homepage": "https://github.com/Abick91/synthcore#readme",
+  "bugs": { "url": "https://github.com/Abick91/synthcore/issues" },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
