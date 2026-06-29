@@ -1,4 +1,4 @@
-# synthcore
+# Synthcore
 
 **Inductive program synthesis with library learning, for JS/TS. No LLM, no GPU.**
 
@@ -95,7 +95,7 @@ await synthesize([{ input: 0.01, output: 2 }, { input: 0.001, output: 3 }, /* �
 ```
 
 Honest frontier: for **noisy** experimental data use PySR (it minimizes error); for **exact** transformations
-(discrete laws, unit conversions, identities) synthcore wins (exact verification). Note the engine only **composes**
+(discrete laws, unit conversions, identities) Synthcore wins (exact verification). Note the engine only **composes**
 arity-1/2 primitives in its rounds, so arity-3 laws (e.g. `idealGasP` = `nRT/V`) only synthesize when the task itself
 has that arity.
 
@@ -143,7 +143,7 @@ it for free. Full copy-paste example: [`examples/hybrid-llm-seeding.ts`](example
 
 - **It is not general code generation.** Enumerative search only reaches **small** programs in a bounded DSL; it does
   not write an application nor reason over natural-language specs.
-- **It complements an LLM, it doesn't replace it.** The model is the hybrid (LLM proposes rare primitives; synthcore
+- **It complements an LLM, it doesn't replace it.** The model is the hybrid (LLM proposes rare primitives; Synthcore
   recomposes them for free and verified), not a head-on competitor.
 - **With few examples it can overfit.** It returns *some* program that passes what you gave it; with 1–2 examples that
   may be a coincidence. Real case: for "email domain" with 3 examples the engine finds
@@ -160,9 +160,9 @@ it for free. Full copy-paste example: [`examples/hybrid-llm-seeding.ts`](example
 
 ## Positioning
 
-- **vs Microsoft PROSE / FlashFill** (mature PBE): synthcore adds **library learning + deep composition**, and is
+- **vs Microsoft PROSE / FlashFill** (mature PBE): Synthcore adds **library learning + deep composition**, and is
   **embeddable, open TS** (PROSE is C#/closed and string/table-centric).
-- **vs DreamCoder / LILO** (academic, Python + GPU): synthcore is a TS product that **runs on a laptop without a GPU**.
+- **vs DreamCoder / LILO** (academic, Python + GPU): Synthcore is a TS project that **runs on a laptop without a GPU**.
 - **vs LLM codegen** (Copilot/Cursor): **deterministic, verified, $0, offline, auditable** — the other half of the stack.
 
 ## Usage

@@ -1,6 +1,6 @@
 {
   "name": "synthcore",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Síntesis inductiva de programas con aprendizaje de librería para JS/TS — sin LLM, sin GPU. Da ejemplos I/O, devuelve una función verificada.",
   "type": "module",
   "main": "dist/index.js",
