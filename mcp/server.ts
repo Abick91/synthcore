@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // SERVIDOR MCP de Synthcore. Expone `synthesize` como una herramienta que cualquier agente compatible con MCP
 // (Claude Desktop, Cursor, etc.) puede llamar para obtener una transformación de datos DETERMINISTA y VERIFICADA en
 // vez de alucinarla. El LLM razona; Synthcore garantiza. Coste $0, offline, sin clave de API. Habla por stdio.

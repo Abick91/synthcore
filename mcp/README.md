@@ -40,8 +40,8 @@ npm run smoke        # verify the handler logic
 {
   "mcpServers": {
     "synthcore": {
-      "command": "node",
-      "args": ["/absolute/path/to/synthcore/mcp/dist/server.js"]
+      "command": "npx",
+      "args": ["-y", "synthcore-mcp"]
     }
   }
 }

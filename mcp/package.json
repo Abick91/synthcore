@@ -3,20 +3,35 @@
   "version": "0.1.0",
   "description": "MCP server for Synthcore — gives any agent (Claude, Cursor, …) a deterministic, verified, $0 tool to synthesize small data-transform functions from input→output examples.",
   "type": "module",
-  "bin": { "synthcore-mcp": "dist/server.js" },
-  "files": ["dist", "README.md"],
-  "engines": { "node": ">=22" },
+  "bin": {
+    "synthcore-mcp": "dist/server.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "tsx server.ts",
     "smoke": "tsx smoke.ts",
     "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run typecheck && npm run build"
   },
-  "keywords": ["mcp", "model-context-protocol", "program-synthesis", "synthcore", "agent-tools", "deterministic"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "program-synthesis",
+    "synthcore",
+    "agent-tools",
+    "deterministic"
+  ],
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "synthcore": "file:..",
+    "synthcore": "^1.1.0",
     "zod": "^3.25.1"
   },
   "devDependencies": {
